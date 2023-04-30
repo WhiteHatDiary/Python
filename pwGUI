@@ -1,0 +1,55 @@
+                     # ***THIS VERSION IS CURRENTLY OUTPUTING A WORKING GUI, ALTHOUGH UNABLE TO IMPORT PYPERCLIP OR PYCLIP***
+
+import tkinter as tk
+import random
+import string
+
+root = tk.Tk()
+root.title("Password Generator")
+root.geometry("300x200")
+
+password_label = tk.Label(root, text="", font=("Helvetica", 18))
+password_label.pack(pady=10)
+
+def generate_password():
+    password = generate_password2()  # replace with your existing function call
+    password_label.config(text=password)
+
+import random
+import string
+
+def generate_password2():
+
+    # define the special_chars as the pool of special characters you want to randomize from
+    special_chars = "!@#$%"
+
+    # define the pattern
+    pattern = "eVyk3!"
+
+    # join random.sample() with the pattern, set length as pattern 
+    shuffled_pattern = ''.join(random.sample(pattern,( len(pattern))))
+
+    # Define first_part to shuffle the password up to the last 4 characters
+    first_part = shuffled_pattern
+
+    # format last_part to display the password similar to the pattern            
+    last_part = '{}{}{}{}{}{}'.format(random.choice(string.ascii_letters), 
+                                      random.choice(string.ascii_letters),
+                                      random.choice(string.ascii_letters),
+                                      random.choice(string.digits),
+                                      random.choice(string.digits),
+                                      random.choice(special_chars))
+
+    # combine first_part and last_part to create the password
+    password = first_part + last_part
+
+    return password # *I forgot to return the password.
+
+# example usage
+password = generate_password2()
+print(password)
+
+generate_button = tk.Button(root, text="Generate Password", command=generate_password)
+generate_button.pack(pady=10)
+
+root.mainloop()
