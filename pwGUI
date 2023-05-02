@@ -1,8 +1,8 @@
-                     # ***THIS VERSION IS CURRENTLY OUTPUTING A WORKING GUI, ALTHOUGH UNABLE TO IMPORT PYPERCLIP OR PYCLIP***
-
+                    
 import tkinter as tk
 import random
 import string
+import pyperclip
 
 root = tk.Tk()
 root.title("Password Generator")
@@ -33,7 +33,7 @@ def generate_password2():
     first_part = shuffled_pattern
 
     # format last_part to display the password similar to the pattern            
-    last_part = '{}{}{}{}{}{}'.format(random.choice(string.ascii_letters), 
+    last_part = '{}{}{}{}{}'.format(random.choice(string.ascii_letters), 
                                       random.choice(string.ascii_letters),
                                       random.choice(string.ascii_letters),
                                       random.choice(string.digits),
@@ -43,7 +43,10 @@ def generate_password2():
     # combine first_part and last_part to create the password
     password = first_part + last_part
 
-    return password # *I forgot to return the password.
+    # copy password to clipboard
+    pyperclip.copy(password)
+
+    return password # 
 
 # example usage
 password = generate_password2()
